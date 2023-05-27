@@ -18,7 +18,7 @@ class EndTransactionActivity : AppCompatActivity() {
         btnBackToHome2 = findViewById(R.id.btnBackToHome2)
 
         btnBackToHome2.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 

@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hello,\nMegaChan!!"
+                android:text="Hello,\n Terong!!"
                 style="@style/Title1" />
 
             <androidx.cardview.widget.CardView
@@ -40,7 +40,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_16" />
+                    android:src="@drawable/img" />
 
             </androidx.cardview.widget.CardView>
 

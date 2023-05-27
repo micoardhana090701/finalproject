@@ -31,9 +31,8 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etPasswordR.text.toString()
             val passwordConf = binding.etPasswordRType.text.toString()
 
-            if (email.isEmpty()){
-                binding.etEmailR.error = "Email Harus Diisi"
-                binding.etEmailR.requestFocus()
+            if (email.isEmpty()&&passwordConf.isEmpty()&&password.isEmpty()&&password != passwordConf){
+                Toast.makeText(this, "Mohon Isi Data Dengan Benar", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -41,26 +40,18 @@ class RegisterActivity : AppCompatActivity() {
                 binding.btnRegisterR.requestFocus()
                 return@setOnClickListener
             }
-            if (passwordConf != password){
-                Toast.makeText(this,"Password Tidak Sama", Toast.LENGTH_SHORT).show()
-            }
-            if (passwordConf.isEmpty()){
-                binding.etPasswordRType.error = "Password Konfirmasi Harus Diisi"
-                binding.etPasswordRType.requestFocus()
-                return@setOnClickListener
-            }
-            if (password.isEmpty()){
-                binding.etPasswordR.error = "Password Tidak Boleh Kosong"
-                binding.etPasswordR.requestFocus()
-                return@setOnClickListener
-            }
             if (password.length < 8){
                 binding.etPasswordR.error = "Password Minimal 8 Karakter"
                 binding.etPasswordR.requestFocus()
                 return@setOnClickListener
             }
-            mShouldFinish = true
-            RegisterUser(email, password)
+            if(passwordConf != password){
+                binding.etPasswordRType.error = "Password Tidak Cocok"
+                binding.etPasswordRType.requestFocus()
+            }
+            else{
+                RegisterUser(email, password)
+            }
         }
     }
 
