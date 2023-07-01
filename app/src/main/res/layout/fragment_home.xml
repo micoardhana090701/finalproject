@@ -23,11 +23,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tvnama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hello,\n Terong!!"
-                style="@style/Title1" />
+                android:text="Hello,\nTerong!!"
+                style="@style/Title2" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -77,11 +78,12 @@
                 />
 
             <TextView
+                android:id="@+id/btnSelengkapnya"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="14dp"
                 android:text="Selengkapnya"
-                android:textColor="@color/primary"
-                style="@style/Caption" />
+                android:textColor="@color/primary" />
 
         </LinearLayout>
 
@@ -114,6 +116,7 @@
                 />
 
             <TextView
+                android:id="@+id/btnSelengkapnya2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Selengkapnya"

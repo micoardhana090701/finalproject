@@ -9,8 +9,13 @@ import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
+import com.packagesayur.yursayur.ViewModelFactory
+import com.packagesayur.yursayur.databinding.ActivityRegisterBinding
+import com.packagesayur.yursayur.etc.Resource
 
 import com.packagesayur.yursayur.user.AuthViewModel
+import com.packagesayur.yursayur.user.UserPreferences
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -29,16 +34,37 @@ class RegisterActivity : AppCompatActivity() {
         binding.tvLogin.setOnClickListener{
             finish()
         }
-
+        setupViewModel()
         binding.btnRegisterR.setOnClickListener {
             val email = binding.etEmailR.text.toString()
             val nama = binding.etNamaR.text.toString()
             val password = binding.etPasswordR.text.toString()
             val repassword = binding.etPasswordRType.text.toString()
             if (canRegister()){
-                authViewModel.registerUser(name = nama, email = email, password = password)
+                if (repassword == password){
+                    authViewModel.registerUser(name = nama, email = email, password = password)
+                } else{
+                    Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
+                }
             } else{
                 authViewModel.authorizationInfo.observe(this){
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    private fun setupViewModel() {
+        val pref = UserPreferences.getInstance(dataStore)
+        authViewModel = ViewModelProvider(this, ViewModelFactory(pref))[AuthViewModel::class.java]
+        authViewModel.authorizationInfo.observe(this){
+            when(it){
+                is Resource.Success -> {
+                    Toast.makeText(this, "akun berhasil di buat", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finishAffinity()
+                }
+                is Resource.Loading -> {}
+                is Resource.Error -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
             }
