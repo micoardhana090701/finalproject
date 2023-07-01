@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -18,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/check_circle_outline/baseline_check_circle_outline_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/remove_circle_outline/outline_remove_circle_outline_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="3a9871" />
-                            <entry key="outputName" value="baseline_check_circle_outline_24" />
+                            <entry key="outputName" value="outline_remove_circle_outline_24" />
                             <entry key="sourceFile" value="K:\YurSayur2" />
                           </map>
                         </option>

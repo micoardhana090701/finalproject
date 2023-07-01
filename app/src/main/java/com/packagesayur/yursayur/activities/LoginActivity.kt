@@ -6,14 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
+import com.packagesayur.yursayur.ViewModelFactory
 import com.packagesayur.yursayur.databinding.ActivityLoginBinding
+import com.packagesayur.yursayur.etc.Resource
+import com.packagesayur.yursayur.user.AuthViewModel
+import com.packagesayur.yursayur.user.UserPreferences
 
 class LoginActivity : AppCompatActivity() {
 
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_key")
     lateinit var binding : ActivityLoginBinding
-    lateinit var mAuth: FirebaseAuth
     private var mShouldFinish = false
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,55 +29,42 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        mAuth = FirebaseAuth.getInstance()
-
-
-
         binding.tvRegister.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnLogin.setOnClickListener{
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+        userLogin()
 
-            if (email.isEmpty()){
-                binding.etEmail.error = "Email Harus Diisi"
-                binding.etEmail.requestFocus()
-                return@setOnClickListener
+        binding.btnLogin.setOnClickListener{
+            if (canLogin()){
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
+                authViewModel.loginUser(email, password)
+            } else{
+                authViewModel.authorizationInfo.observe(this){
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
             }
-            if (password.isEmpty()){
-                binding.etEmail.error = "Email Harus Diisi"
-                binding.etEmail.requestFocus()
-                return@setOnClickListener
-            }
-            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                binding.etEmail.error = "Format Email Tidak Sesuai"
-                binding.etEmail.requestFocus()
-                return@setOnClickListener
-            }
-            mShouldFinish = true
-            Login(email, password)
         }
     }
 
-    private fun Login(email: String, password: String) {
-        mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    val sharedPreferences = getSharedPreferences("login_status", Context.MODE_PRIVATE)
-                    val editor = sharedPreferences.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.apply()
-                    Toast.makeText(this, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+    private fun userLogin() {
+        val pref = UserPreferences.getInstance(dataStore)
+        authViewModel = ViewModelProvider(this, ViewModelFactory(pref))[AuthViewModel::class.java]
+        authViewModel.authorizationInfo.observe(this){
+            when(it){
+                is Resource.Success ->{
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    mShouldFinish = true
                 }
+                is Resource.Loading -> {}
+                is Resource.Error ->{
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {}
             }
-
+        }
     }
     override fun onStop() {
         super.onStop()
@@ -77,4 +72,8 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+    private fun canLogin() =
+        binding.etEmail.error == null && binding.etEmail.error == null &&
+                !binding.etEmail.text.isNullOrEmpty() && !binding.etEmail.text.isNullOrEmpty()
+
 }
