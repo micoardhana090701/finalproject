@@ -41,14 +41,14 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etPasswordR.text.toString()
             val repassword = binding.etPasswordRType.text.toString()
             if (canRegister()){
-                if (repassword == password){
-                    authViewModel.registerUser(name = nama, email = email, password = password)
-                } else{
-                    Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
+                if (password.length < 8 && password.isEmpty()){
+                    Toast.makeText(this, "Password Minimal 8 Karakter", Toast.LENGTH_SHORT).show()
                 }
-            } else{
-                authViewModel.authorizationInfo.observe(this){
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                if (password != repassword){
+                    Toast.makeText(this, "Password tidak cocok", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    authViewModel.registerUser(name = nama, email = email, password = password)
                 }
             }
         }
