@@ -76,7 +76,7 @@ class ProfileFragment : Fragment() {
         binding.btnUbahFoto.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
             alertDialogBuilder.setTitle("Pilih Direktori")
-            alertDialogBuilder.setIcon(R.drawable.img)
+            alertDialogBuilder.setIcon(R.drawable.outline_camera_alt_24)
 
             alertDialogBuilder.setPositiveButton("Camera") { dialogInterface: DialogInterface, i: Int ->
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

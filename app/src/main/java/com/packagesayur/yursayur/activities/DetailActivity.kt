@@ -62,6 +62,27 @@ class DetailActivity : AppCompatActivity() {
                     .into(ivSayurDetail)
             }
         }
+        binding.btnBackToHome.setOnClickListener {
+            finish()
+        }
+        binding.btnIncreament.setOnClickListener {
+            var jumlah = binding.tvItemCount.text.toString().toInt()
+            jumlah++
+            val total = jumlah*product.sellingPrice!!
+            total.toString()
+            binding.tvTotalHarga.setText("Rp."+total)
+            binding.tvItemCount.setText(jumlah.toString())
+        }
+        binding.btnDecreament.setOnClickListener {
+            var jumlah = binding.tvItemCount.text.toString().toInt()
+            if (jumlah > 0){
+                jumlah--
+                val total = jumlah*product.sellingPrice!!
+                total.toString()
+                binding.tvTotalHarga.setText("Rp."+total)
+                binding.tvItemCount.setText(jumlah.toString())
+            }
+        }
     }
     companion object {
         const val EXTRA_DATA = "extra_data"
