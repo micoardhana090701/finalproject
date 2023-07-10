@@ -1,6 +1,5 @@
 <img width="360" alt="Chat" src="https://github.com/micoardhana090701/finalproject/assets/133730091/92b4ebed-09a6-4b5b-bb13-af637f1b2e41">
-![Uploading Buah.png…]()
-![Uploading Beranda.png…]()
+
 # Final Project
 
 
@@ -27,3 +26,5 @@ Berikut merupakan prototype dari aplikasi YurSayur [Figma Prototype YurSayur](ht
 ## Ui Prototype Design
 ![Uploading Daftar Chat.png…]()
 ![Uploading Checkout.png…]()
+![Uploading Buah.png…]()
+![Uploading Beranda.png…]()
