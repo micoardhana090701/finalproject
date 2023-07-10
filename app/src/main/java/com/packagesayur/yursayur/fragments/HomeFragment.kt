@@ -72,9 +72,8 @@ class HomeFragment : Fragment() {
         val viewModelFactory = ViewModelFactory(pref)
         viewModelFactory.setApplication(requireActivity().application)
         val accessToken = pref.getUserKey().first()
-        val searchQuery = "%%"
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-        productViewModel.getAllProduct(accessToken = "Bearer $accessToken", searchQuery = searchQuery)
+        productViewModel.getAllProduct(accessToken = "Bearer $accessToken")
         productViewModel.getProduct.observe(viewLifecycleOwner){
             productAdapterInitialize(product = it.result?.data as List<DataItem>)
         }

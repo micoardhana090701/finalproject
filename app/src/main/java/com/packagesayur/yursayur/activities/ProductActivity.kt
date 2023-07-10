@@ -3,6 +3,8 @@ package com.packagesayur.yursayur.activities
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -41,26 +43,53 @@ class ProductActivity : AppCompatActivity() {
         lifecycleScope.launch {
             productItem()
         }
+        binding.btnBackProductList.setOnClickListener {
+            finish()
+        }
     }
     private suspend fun productItem(){
+
+        binding.btnSearch.setOnClickListener {
+            lifecycleScope.launch {
+                performSearch()
+            }
+        }
         val pref = UserPreferences.getInstance(dataStore)
         val viewModelFactory = ViewModelFactory(pref)
         viewModelFactory.setApplication(application)
         val accessToken = pref.getUserKey().first()
         productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-        val searchQuery = "%%"
-        productViewModel.getAllProduct(accessToken = "Bearer $accessToken", searchQuery = searchQuery)
+        val searchQuery = binding.etSearchAllProduct.text.toString().trim()
+
+        productViewModel.getSearch(accessToken = "Bearer $accessToken", searchQuery = searchQuery)
+        productViewModel.getProduct.observe(this){
+            productRecyclerViewInitialize(product = it.result?.data as List<DataItem>)
+        }
+
+    }
+
+    private suspend fun performSearch() {
+        val pref = UserPreferences.getInstance(dataStore)
+        val viewModelFactory = ViewModelFactory(pref)
+        viewModelFactory.setApplication(application)
+        val accessToken = pref.getUserKey().first()
+        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+
+        val searchQuery = binding.etSearchAllProduct.text.toString().trim()
+        productViewModel.getSearch(accessToken = "Bearer $accessToken", searchQuery = searchQuery)
         productViewModel.getProduct.observe(this){
             productRecyclerViewInitialize(product = it.result?.data as List<DataItem>)
         }
     }
+
+
     private fun productRecyclerViewInitialize(product: List<DataItem>) {
         allProductAdapter = AllProductAdapter(product)
         binding.rvProduct.apply {
             setHasFixedSize(true)
             val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
-            layoutManager = GridLayoutManager(this@ProductActivity, 2)
-            addItemDecoration(GridSpacingItemDecoration(2, spacingInPixels, true))
+            layoutManager = GridLayoutManager(this@ProductActivity, 3)
+            addItemDecoration(GridSpacingItemDecoration(3, spacingInPixels, true))
             adapter = allProductAdapter
         }
     }

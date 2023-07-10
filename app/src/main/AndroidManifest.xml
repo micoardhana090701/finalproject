@@ -21,6 +21,9 @@
         android:theme="@style/Theme.YurSayur"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AddStoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProductActivity"
             android:exported="false" />
         <activity

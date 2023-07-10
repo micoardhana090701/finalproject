@@ -7,112 +7,121 @@
     android:paddingHorizontal="30dp"
     android:clipToPadding="false"
     tools:context=".activities.LoginActivity">
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/Title1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Masuk"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="30dp" />
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/Title1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="Masuk"
+                android:textAlignment="center"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="30dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/Body2"
-        android:textColor="@color/text_80"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="Silahkan masuk untuk\nmulai belanja"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:layout_editor_absoluteX="30dp" />
+            <TextView
+                android:id="@+id/textView"
+                style="@style/Body2"
+                android:textColor="@color/text_80"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Silahkan masuk untuk\nmulai belanja"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:layout_editor_absoluteX="30dp" />
 
-    <TextView
-        android:id="@+id/labelEmail"
-        style="@style/Body1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:paddingHorizontal="4dp"
-        android:text="Email"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <TextView
+                android:id="@+id/labelEmail"
+                style="@style/Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:paddingHorizontal="4dp"
+                android:text="Email"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        android:background="@drawable/bg_edittext"
-        style="@style/Body2"
-        android:textCursorDrawable="@drawable/cursor_color"
-        app:layout_constraintTop_toBottomOf="@+id/labelEmail" />
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:background="@drawable/bg_edittext"
+                style="@style/Body2"
+                android:textCursorDrawable="@drawable/cursor_color"
+                app:layout_constraintTop_toBottomOf="@+id/labelEmail" />
 
-    <TextView
-        android:id="@+id/labelPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingHorizontal="4dp"
-        android:text="Password"
-        style="@style/Body1"
-        app:layout_constraintTop_toBottomOf="@id/etEmail"/>
+            <TextView
+                android:id="@+id/labelPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="4dp"
+                android:text="Password"
+                style="@style/Body1"
+                app:layout_constraintTop_toBottomOf="@id/etEmail"/>
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:background="@drawable/bg_edittext"
-        android:textCursorDrawable="@drawable/cursor_color"
-        style="@style/Body2"
-        app:layout_constraintTop_toBottomOf="@+id/labelPassword" />
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:background="@drawable/bg_edittext"
+                android:textCursorDrawable="@drawable/cursor_color"
+                style="@style/Body2"
+                app:layout_constraintTop_toBottomOf="@+id/labelPassword" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Masuk"
-        style="@style/RoundedButton.Primary"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Masuk"
+                style="@style/RoundedButton.Primary"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Belum punya akun?"
-            style="@style/Body2"
-            android:textColor="@color/text_80" />
+                <TextView
+                    style="@style/Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum punya akun?"
+                    android:textColor="@color/text_80" />
 
-        <View
-            android:layout_width="8dp"
-            android:layout_height="match_parent"/>
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/tvRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daftar"
-            android:textColor="@color/primary"
-            style="@style/Body1"/>
+                <TextView
+                    android:id="@+id/tvRegister"
+                    style="@style/Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar"
+                    android:textColor="@color/primary" />
 
-    </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

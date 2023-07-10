@@ -44,5 +44,5 @@ interface ApiService {
         @Header("Authorization") access_token: String,
         @Query("search") search: String? = null,
         @Query("limit") limit: Int? = null,
-    ) : ProductResponse
+    ) : Response<ProductResponse>
 }
