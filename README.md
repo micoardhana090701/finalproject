@@ -1,16 +1,17 @@
 # Final Project
 
-- [Dokumentasi](#dokumentasi)
-- [Requirement](#requirement)
-- [App Requirement](#apprequirement)
-- [Ui Prototype Design](#uiprototypedesign)
-
 ## Nama Anggota Kelompok
 
 - Sahid Anwar (21.02.0669)
 - Suha Jihan Majida  (21.02.0632)
 - Akhmad Hermawan Bakhtiar Ikhsani (21.02.0664)
 - Mico Yumna Ardhana (21.02.0635)
+
+## Daftar Isi
+- [Dokumentasi](#dokumentasi)
+- [Requirement](#requirement)
+- [App Requirement](#apprequirement)
+- [Ui Prototype Design](#uiprototypedesign)
 
 ## Dokumentasi
 Berikut merupakan prototype dari aplikasi YurSayur [Figma Prototype YurSayur](https://www.figma.com/file/ZhIVt9UdMi14hnyP6xR2cK/YurSayur?type=design&node-id=657%3A1859&mode=design&t=P9ICan1myu3f3BLf-1).
