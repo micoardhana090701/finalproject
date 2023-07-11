@@ -1,9 +1,9 @@
 # Final Project
 
 - [Dokumentasi](#dokumentasi)
-- [Requirement](#requirement)_
+- [Requirement](#requirement)
 - [App Requirement](#apprequirement)
-- [Ui Prototype Design](#uiprototypedesign)_
+- [Ui Prototype Design](#uiprototypedesign)
 
 ## Nama Anggota Kelompok
 
