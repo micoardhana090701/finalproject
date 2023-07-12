@@ -27,7 +27,9 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.packagesayur.yursayur.R
 import com.packagesayur.yursayur.ViewModelFactory
+import com.packagesayur.yursayur.activities.AddStoreActivity
 import com.packagesayur.yursayur.activities.LoginActivity
+import com.packagesayur.yursayur.activities.UserUpdateActivity
 import com.packagesayur.yursayur.databinding.FragmentProfileBinding
 import com.packagesayur.yursayur.etc.Resource
 import com.packagesayur.yursayur.etc.createCustomTempFile
@@ -68,11 +70,13 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             setupProfileView(view)
         }
+
         binding.btnLogOut.setOnClickListener {
             authViewModel.logout()
             startActivity(Intent(context, LoginActivity::class.java))
             finishAffinity(requireActivity())
         }
+
         binding.btnUbahFoto.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
             alertDialogBuilder.setTitle("Pilih Direktori")
@@ -107,6 +111,14 @@ class ProfileFragment : Fragment() {
             alertDialog.show()
         }
 
+        binding.btnBuatToko.setOnClickListener {
+            startActivity(Intent(context, AddStoreActivity::class.java))
+        }
+
+        binding.btnUbahDataProfile.setOnClickListener {
+            startActivity(Intent(context, UserUpdateActivity::class.java))
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -130,8 +142,10 @@ class ProfileFragment : Fragment() {
             when(it){
                 is Resource.Success -> {
                     if (it != null){
-                        val nama = it.data?.result?.user?.name
-                        binding.tvNamaUser.setText(nama)
+                        val userIdIntent = Intent(context, AddStoreActivity::class.java)
+                        userIdIntent.putExtra(AddStoreActivity.EXTRA_USER_ID, it.data?.result?.user?.id)
+                        binding.tvNamaUser.setText(it.data?.result?.user?.name)
+                        binding.tvAlamatProfile.setText(it.data?.result?.user?.address)
                         val ivProfileHome = binding.ivProfileUser
                         if (it.data?.result?.user?.avatar == null){
                             Glide.with(view.context)
@@ -179,8 +193,9 @@ class ProfileFragment : Fragment() {
             profileViewModel.profileUser.observe(this){
                 val nama = it.data?.result?.user?.name.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 val email = it.data?.result?.user?.email.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                val address = it.data?.result?.user?.address.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 lifecycleScope.launch{
-                    profileViewModel.updateAll(image = imageMultipart, email = email, name = nama)
+                    profileViewModel.updateAll(image = imageMultipart, email = email, name = nama, address = address)
                 }
                 if (it != null) {
                     Toast.makeText(requireContext(), "Akun Telah di Update", Toast.LENGTH_SHORT).show()

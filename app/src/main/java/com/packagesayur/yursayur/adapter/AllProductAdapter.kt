@@ -9,11 +9,12 @@ import com.packagesayur.yursayur.R
 import com.packagesayur.yursayur.activities.DetailActivity
 import com.packagesayur.yursayur.databinding.SayurItemBigBinding
 import com.packagesayur.yursayur.databinding.SayurItemBinding
+import com.packagesayur.yursayur.databinding.SayurItemProductBinding
 import com.packagesayur.yursayur.response.DataItem
 
 class AllProductAdapter(private val productList: List<DataItem>): RecyclerView.Adapter<AllProductAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllProductAdapter.ViewHolder {
-        val binding = SayurItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = SayurItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -22,7 +23,7 @@ class AllProductAdapter(private val productList: List<DataItem>): RecyclerView.A
         holder.bind(product)
     }
 
-    inner class ViewHolder(private val binding: SayurItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: SayurItemProductBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(product: DataItem){
             with(binding){
                 tvNamaSayur.setText(product.name)

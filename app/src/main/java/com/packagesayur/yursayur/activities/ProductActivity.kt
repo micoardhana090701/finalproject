@@ -89,7 +89,7 @@ class ProductActivity : AppCompatActivity() {
             setHasFixedSize(true)
             val spacingInPixels = resources.getDimensionPixelSize(R.dimen.spacing)
             layoutManager = GridLayoutManager(this@ProductActivity, 3)
-            addItemDecoration(GridSpacingItemDecoration(3, spacingInPixels, true))
+            addItemDecoration(GridSpacingItemDecoration(3, spacingInPixels, false))
             adapter = allProductAdapter
         }
     }

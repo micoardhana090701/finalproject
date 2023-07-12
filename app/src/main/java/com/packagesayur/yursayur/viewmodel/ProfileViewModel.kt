@@ -57,11 +57,12 @@ class ProfileViewModel(private val preferences: UserPreferences) : ViewModel(){
     suspend fun updateAll(
         image: MultipartBody.Part?,
         name : RequestBody,
-        email : RequestBody
+        email : RequestBody,
+        address: RequestBody
     ){
         val accessToken = "Bearer ${preferences.getUserKey().first()}"
         viewModelScope.launch {
-            ApiConfig.apiInstance.updateAll(accessToken, avatar = image, name = name, email = email).let { response ->
+            ApiConfig.apiInstance.updateAll(accessToken, avatar = image, name = name, email = email, address = address).let { response ->
                 if (response.isSuccessful){
                     if (response.body() != null){
                         val result = response.body()
