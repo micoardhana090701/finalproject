@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".activities.UserUpdateActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Profile"
+        style="@style/Body1"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout12"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBackToHome">
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/labelNamaUpdate"
+                    style="@style/Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:paddingHorizontal="4dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Nama"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/etAlamatUpdate"
+                    style="@style/Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="Alamat"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelAlamatUpdate" />
+
+                <TextView
+                    android:id="@+id/labelAlamatUpdate"
+                    style="@style/Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingHorizontal="4dp"
+                    android:text="Alamat"
+                    app:layout_constraintTop_toBottomOf="@+id/etNamaUpdate" />
+                <EditText
+                    android:id="@+id/etNamaUpdate"
+                    style="@style/Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="Nama"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelNamaUpdate" />
+
+                <TextView
+                    android:id="@+id/labelPhone"
+                    style="@style/Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:paddingHorizontal="4dp"
+                    android:text="Nomer Handphone"
+                    app:layout_constraintTop_toBottomOf="@+id/etAlamatUpdate" />
+
+                <EditText
+                    android:id="@+id/etPhoneUpdate"
+                    style="@style/Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="Nomer Handphone"
+                    android:inputType="number"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelPhone" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnUpdateProfile"
+        style="@style/RoundedButton.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="Update Profile"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/btnBackToHome"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/button_solid"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

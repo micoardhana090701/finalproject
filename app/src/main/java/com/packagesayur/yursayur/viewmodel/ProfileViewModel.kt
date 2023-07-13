@@ -58,23 +58,41 @@ class ProfileViewModel(private val preferences: UserPreferences) : ViewModel(){
         image: MultipartBody.Part?,
         name : RequestBody,
         email : RequestBody,
-        address: RequestBody
+        address: RequestBody,
+        phone: RequestBody,
     ){
         val accessToken = "Bearer ${preferences.getUserKey().first()}"
         viewModelScope.launch {
-            ApiConfig.apiInstance.updateAll(accessToken, avatar = image, name = name, email = email, address = address).let { response ->
+            ApiConfig.apiInstance.updateAll(accessToken, avatar = image, name = name, email = email, address = address, phone = phone).let { response ->
                 if (response.isSuccessful){
                     if (response.body() != null){
                         val result = response.body()
                         _updateUser.postValue(result!!)
                     }
                 }
-                else if (response.code() == 500){
+                else{
                     val errorResponse = Gson().fromJson(
                         response.errorBody()?.charStream(),
                         UpdateResponse::class.java
                     )
                     _updateUser.postValue(errorResponse)
+                }
+            }
+        }
+    }
+    suspend fun updateData(
+        name : RequestBody,
+        address: RequestBody,
+        phone: RequestBody,
+    ){
+        val accessToken = "Bearer ${preferences.getUserKey().first()}"
+        viewModelScope.launch {
+            ApiConfig.apiInstance.updateData(accessToken, name = name, address = address, phone = phone).let { response ->
+                if (response.isSuccessful){
+                    if (response.body() != null){
+                        val result = response.body()
+                        _updateUser.postValue(result!!)
+                    }
                 }
                 else{
                     val errorResponse = Gson().fromJson(

@@ -3,6 +3,8 @@ package com.packagesayur.yursayur.api
 import androidx.room.Update
 import com.packagesayur.yursayur.etc.Resource
 import com.packagesayur.yursayur.response.AddCartResponse
+import com.packagesayur.yursayur.response.CartResponse
+import com.packagesayur.yursayur.response.ItemCartResponse
 import com.packagesayur.yursayur.response.ProductResponse
 import com.packagesayur.yursayur.response.ProfileResponse
 import com.packagesayur.yursayur.response.StoreResponse
@@ -16,6 +18,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -43,6 +46,15 @@ interface ApiService {
         @Part ("email") email: RequestBody,
         @Part ("name") name: RequestBody,
         @Part ("address") address: RequestBody,
+        @Part ("phone") phone: RequestBody,
+    ): Response<UpdateResponse>
+    @Multipart
+    @POST("profile")
+    suspend fun updateData(
+        @Header("Authorization") access_token: String,
+        @Part ("name") name: RequestBody,
+        @Part ("address") address: RequestBody,
+        @Part ("phone") phone: RequestBody,
     ): Response<UpdateResponse>
 
     @GET("product")
@@ -78,5 +90,20 @@ interface ApiService {
     @GET("cart")
     suspend fun getAllCart(
         @Header("Authorization") access_token: String
-    ): Response<AddCartResponse>
+    ): Response<CartResponse>
+
+    @Multipart
+    @POST("cart/{id}")
+    suspend fun updateCartItem(
+        @Header("Authorization") access_token: String,
+        @Path ("id") id : Int,
+        @Part ("quantity") quantity: RequestBody,
+        @Part ("is_selected") is_selected: RequestBody,
+    ): Response<ItemCartResponse>
+
+    @DELETE("cart/{id}")
+    suspend fun deleteCartItem(
+        @Header("Authorization") access_token: String,
+        @Path ("id") id : Int,
+    ): Response<ItemCartResponse>
 }

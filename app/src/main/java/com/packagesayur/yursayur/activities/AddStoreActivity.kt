@@ -20,7 +20,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.packagesayur.yursayur.R
 import com.packagesayur.yursayur.ViewModelFactory
 import com.packagesayur.yursayur.databinding.ActivityAddStoreBinding
@@ -32,7 +31,6 @@ import com.packagesayur.yursayur.user.UserPreferences
 import com.packagesayur.yursayur.viewmodel.AddStoreViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

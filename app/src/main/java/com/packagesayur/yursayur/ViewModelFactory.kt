@@ -9,6 +9,7 @@ import com.packagesayur.yursayur.viewmodel.AddCartViewModel
 import com.packagesayur.yursayur.viewmodel.ProductViewModel
 import com.packagesayur.yursayur.viewmodel.ProfileViewModel
 import com.packagesayur.yursayur.viewmodel.AddStoreViewModel
+import com.packagesayur.yursayur.viewmodel.CartViewModel
 
 class ViewModelFactory(private val pref: UserPreferences): ViewModelProvider.NewInstanceFactory() {
     private lateinit var _Application: Application
@@ -25,6 +26,7 @@ class ViewModelFactory(private val pref: UserPreferences): ViewModelProvider.New
             ProductViewModel::class.java -> ProductViewModel(pref) as T
             AddStoreViewModel::class.java -> AddStoreViewModel(pref) as T
             AddCartViewModel::class.java -> AddCartViewModel(pref) as T
+            CartViewModel::class.java -> CartViewModel(pref) as T
             else -> throw  IllegalAccessException("Unknown ViewModel class: "+ modelClass.name)
         }
     }

@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -39,9 +37,6 @@ import com.packagesayur.yursayur.etc.uriToFile
 import com.packagesayur.yursayur.user.AuthViewModel
 import com.packagesayur.yursayur.user.UserPreferences
 import com.packagesayur.yursayur.viewmodel.ProfileViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -194,8 +189,9 @@ class ProfileFragment : Fragment() {
                 val nama = it.data?.result?.user?.name.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 val email = it.data?.result?.user?.email.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 val address = it.data?.result?.user?.address.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+                val phone = it.data?.result?.user?.phone.toString().toRequestBody("text/plain".toMediaTypeOrNull())
                 lifecycleScope.launch{
-                    profileViewModel.updateAll(image = imageMultipart, email = email, name = nama, address = address)
+                    profileViewModel.updateAll(image = imageMultipart, email = email, name = nama, address = address, phone = phone)
                 }
                 if (it != null) {
                     Toast.makeText(requireContext(), "Akun Telah di Update", Toast.LENGTH_SHORT).show()

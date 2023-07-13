@@ -1,49 +1,37 @@
 package com.packagesayur.yursayur.viewmodel
 
-import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.common.api.Api
 import com.google.gson.Gson
 import com.packagesayur.yursayur.api.ApiConfig
 import com.packagesayur.yursayur.response.AddCartResponse
-import com.packagesayur.yursayur.response.CartItemsItem
 import com.packagesayur.yursayur.response.CartResponse
-import com.packagesayur.yursayur.response.StoreResponse
 import com.packagesayur.yursayur.user.UserPreferences
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import okhttp3.RequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class AddCartViewModel(private val preferences: UserPreferences): ViewModel() {
+class CartViewModel(private val preferences: UserPreferences): ViewModel() {
 
-    private val _addToCart = MutableLiveData<AddCartResponse>()
-    val addToCart: LiveData<AddCartResponse> = _addToCart
+    private val _getAllCart = MutableLiveData<CartResponse?>()
+    val getAllCart : LiveData<CartResponse?> = _getAllCart
 
-    suspend fun addToCart(
-        productId: Int,
-        quantity: Int
-    ){
+    suspend fun getAllCart(){
         viewModelScope.launch {
             val accessToken = "Bearer ${preferences.getUserKey().first()}"
-            ApiConfig.apiInstance.addToCart(access_token = accessToken, productId = productId, quantity = quantity).let {
+            ApiConfig.apiInstance.getAllCart(accessToken).let {
                 if (it.isSuccessful){
                     val data = it.body()
-                    if (data != null){
-                        _addToCart.postValue(data!!)
+                    if (data!= null){
+                        _getAllCart.postValue(data)
                     }
                 } else{
                     val errorResponse = Gson().fromJson(
                         it.errorBody()?.charStream(),
-                        AddCartResponse::class.java
+                        CartResponse::class.java
                     )
-                    _addToCart.postValue(errorResponse)
+                    _getAllCart.postValue(errorResponse)
                 }
             }
         }
